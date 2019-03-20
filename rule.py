@@ -1,24 +1,19 @@
 class Rule:
     rules = []
-    def __init__(self, triggerText, subject, message):
+    def __init__(self, trigger, subject, message):
         Rule.rules.append(self)
-        self.triggerText = triggerText
+        self.trigger = trigger
         self.subject = subject
         self.message = message
 
     def test(self, logEntry):
-        print("testing %s" % logEntry)
+        return self.trigger(logEntry)
 
-        try:
-            logEntry.index(self.triggerText)
-        except ValueError:
-            print("not found")
-            return False
-        else:
-            print("found")
-            return True 
-
-        return False
+class simpleRule:
+    def __init__(self, triggerText, subject, message):
+        Rule(lambda entry : entry["MESSAGE"] == triggerText, subject, message)
 
 def getRules():
     return rules
+
+

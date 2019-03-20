@@ -53,7 +53,7 @@ server.login(creds[0], creds[1])
 
 
 def connect():
-	server = smtplib.SMTP('smtp.gmail.com:587')
+	server = smtplib.SMTP(creds[2] + ":587")
 	server.ehlo()
 	server.starttls()
 	print("SMTP login successful")
@@ -80,7 +80,7 @@ while p.poll():
 
     for entry in j:
         for testRule in rule.Rule.rules:
-            if testRule.test(entry["MESSAGE"]):
+            if testRule.test(entry):
 
                message = MIMEMultipart("alternative")
                message["Subject"] = "Email alert from talkToMe - %s" % testRule.subject
