@@ -1,0 +1,4 @@
+emailUsername:password:smtp.server.com:
+
+#put this in /etc/talkToMe/
+#some text editors may leave a trailing \n at the end of the file. The additional ":" keeps talkToMe from reading the server as "smtp.server.com\n"
